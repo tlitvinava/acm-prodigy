@@ -1,0 +1,122 @@
+{% load static %}
+<header class="header">
+    <a href="mailto:acm@bsuir.by" class="nav-mail-button">
+        <img src="/static/assets/img/mail-white.png" alt="mail">
+        </img>
+    </a>
+    <nav class="nav">
+        <div class="nav-menu">
+            <div class="menu-top-bar d-flex align-center">
+                <div class="container">
+                    <button class="nav-close-button">
+                    </button>
+                </div>
+            </div>
+            <div class="menu d-flex align-center justify-center">
+                <div class="menu-buttons">
+                    <a href="{% url 'common-info' %}" class="menu-button">
+                        {{ tr.about }}
+                    </a>
+                    <a href="{% url 'rules' %}" class="menu-button">
+                        {{ tr.rules }}
+                    </a>
+                    <a href="{% url 'index' %}" class="menu-button grid-full-row">
+                        На главную
+                    </a>
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'team-detail' %}" class="btn-star menu-button">
+                        Profile
+                    </a>
+                    <a href="{% url 'logout' %}" class="btn-star menu-button">
+                        Logout
+                    </a>
+                    {% else %}
+                    <a href="{% url 'signup' %}" class="btn-star menu-button">
+                        Register
+                    </a>
+                    <a href="{% url 'login' %}" class="btn-star menu-button">
+                        Login
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="container d-flex justify-between align-center">
+            <ul class="nav-ul d-flex align-center burger">
+                <li class="nav-li">
+                    <button class="nav-open-button">
+                    </button>
+                </li>
+            </ul>
+            <ul class="nav-ul d-flex align-center mobile-hidden">
+                <li class="nav-li">
+                    <a href="/">
+                        <img id="header-logo" src="/static/assets/img/logo-min.svg">
+                        </img>
+                    </a>
+                </li>
+                <li class="nav-li">
+                    <a href="/" id="header-olymp-name">
+                        BSUIR Open XII
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-ul d-flex align-center mid-hidden">
+                <li class="nav-li">
+                    <a href="{% url 'common-info' %}" class="btn-star little">
+                        О чемпионате
+                    </a>
+                </li>
+                <li class="nav-li">
+                    <a href="{% url 'rules' %}" class="btn-star little">
+                        Правила
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-ul d-flex align-center">
+                <li class="nav-li">
+                    <a href="?lang=ru" class="little btn-star inline active">
+                        RU
+                    </a>
+                </li>
+                <li class="nav-li">
+                    <a href="?lang=en" class="little btn-star inline ">
+                        EN
+                    </a>
+                </li>
+                <li class="nav-li">
+                    <a href="?lang=be" class="little btn-star inline ">
+                        BE
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-ul d-flex align-center profile-btns">
+                {% if not request.user.is_authenticated %}
+                <li class="nav-li">
+                    <a href="{% url 'login' %}" class="btn-star little">
+                        Войти
+                    </a>
+                </li>
+                <li class="nav-li">
+                    <a href="{% url 'signup' %}" class="btn-star little">
+                        Зарегистрироваться
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-li">
+                    <a href="{% url 'team-detail' %}" class="btn-star little">
+                        Профиль
+                    </a>
+                </li>
+                <li class="nav-li">
+                    <a href="{% url 'logout' %}" class="btn-star little">
+                        Выход
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <script src="{% static 'assets/js/navbar.js' %}">
+    </script>
+</header>

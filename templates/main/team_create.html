@@ -1,0 +1,44 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+
+
+{% block title %}
+Создать команду
+{% endblock %}
+
+{% block content %}
+<main>
+    <article class="login full-screen noised d-flex align-center justify-center">
+        <div class="container d-flex direction-column align-center">
+            <h2 class="form-header">Создать команду</h2>
+            <form method="POST" class="form d-flex direction-column align-center">
+              {% csrf_token %}
+                <div class="form-buttons__wrap command-type d-flex">
+                    <a class="btn-star button form-button team-type-button active little inline" data-key="0">Школьная</a>
+                    <a class="btn-star button form-button team-type-button little inline" data-key="1">Студенческая</a>
+                </div>
+                <div class="form-input__wrap">
+                    <input required class="btn-star-input" name="name" id="name" autocomplete="name" type="text" placeholder="Название команды">
+                </div>
+                <div class="form-buttons__wrap univer-type d-flex">
+                    <a class="btn-star button form-button team-type-button active little inline" data-key="0">Из одного учебного заведения</a>
+                    <a class="btn-star button form-button team-type-button little inline" data-key="1">Смешанная</a>
+                  </div>
+                <input type="number" name="command_type" id="command_type" autocomplete="command_type" value="0" style="display: none;">
+                <input type="number" name="univer_type" id="univer_type" autocomplete="univer_type" value="0" style="display: none;">
+                <p class="form-info">
+                  *-поля, обязательные для заполнения <br>
+                    {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        {{error}}</br>
+                    {% endfor %}
+                    {% endfor %}
+                </p>
+                <a class="btn-star submit">Создать</a>
+            </form>
+        </div>
+    </article>
+</main>
+<script src="{% static 'assets/js/create-command.js' %}"></script>
+<script src="{% static 'assets/js/forms.js' %}"></script>
+{% endblock %}

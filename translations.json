@@ -1,0 +1,132 @@
+{
+    "about": {
+        "ru": "О чемпионате",
+        "en": "About"
+    },
+    "title": {
+        "ru": "BSUIR Open XIII",
+        "en": "BSUIR Open XIII"
+    },
+    "profile": {
+        "ru": "Личный кабинет",
+        "en": "Profile"
+    },
+    "Login_action": {
+        "ru": "Войти",
+        "en": "Login"
+    },
+    "Logout": {
+        "ru": "Выйти",
+        "en": "Logout"
+    },
+    "rules": {
+        "ru": "Правила",
+        "en": "Rules"
+    },
+    "signup": {
+        "ru": "Зарегистрироваться",
+        "en": "Sign up"
+    },
+    "fcsan": {
+        "ru": "Факультет компьютерных систем и сетей БГУИР",
+        "en": "Faculty of computer systems and networks, BSUIR"
+    },
+    "fcsan_abbr": {
+        "ru": "ФКСиС",
+        "en": "FCSaN"
+    },
+    "union": {
+        "ru": "Студсовет ФКСиС",
+        "en": "FCSAN Student Union"
+    },
+    "sponsors": {
+        "ru": "Спонсоры",
+        "en": "Sponsors"
+    },
+    "add_coach": {
+        "ru": "Добавить/обновить тренера",
+        "en": "Add/update coach"
+    },
+    "add_participant": {
+        "ru": "Добавить/обновить участника",
+        "en": "Add/update participant"
+    },
+    "coach": {
+        "ru": "Тренер",
+        "en": "Coach"
+    },
+    "save": {
+        "ru": "Сохранить",
+        "en": "Save"
+    },
+    "required": {
+        "ru": "поля, обязательные для заполнения",
+        "en": "required fields"
+    },
+    "create_team": {
+        "ru": "Создать команду",
+        "en": "Create team"
+    },
+    "registration_closed": {
+        "ru": "Регистрация закрыта...",
+        "en": "Registration closed..."
+    },
+    "status": {
+        "ru": "Статус",
+        "en": "Status"
+    },
+    "track": {
+        "ru": "Трек",
+        "en": "Track"
+    },
+    "stage": {
+        "ru": "Стадия участия",
+        "en": "Stage"
+    },
+    "login": {
+        "ru": "Логин",
+        "en": "Login"
+    },
+    "password": {
+        "ru": "Пароль",
+        "en": "Password"
+    },
+    "no_info": {
+        "ru": "Нет информации.",
+        "en": "No information."
+    },
+    "phone": {
+        "ru": "Тел.",
+        "en": "Phone number"
+    },
+    "email": {
+        "ru": "Email",
+        "en": "Email"
+    },
+    "update_info": {
+        "ru": "Редактировать информацию",
+        "en": "Update information"
+    },
+    "participants": {
+        "ru": "Участники",
+        "en": "Participants"
+    },
+    "fullfilled_info":{
+        "ru": "Чтобы отправить команду на рассмотрение заполните всю информацию.",
+        "en": "Complete all fields to send approvement request."
+    },
+    "send_for_approve":{
+        "ru": "Отправить на рассмотрение",
+        "en": "Send approvement request"
+    },
+    "approvement_warning":{
+        "ru": [
+            "Нажатием кнопки вы подтверждаете правильность указанной вами информации об участниках олимпиады.",
+            "После подтверждения информации, вы не сможете изменить информацию о команде."
+        ],
+        "en": [
+            "By pressing this button You confirm the information about participants of the Championship.",
+            "After confirmation you will not be able to change information about your team."
+        ]
+    }
+}

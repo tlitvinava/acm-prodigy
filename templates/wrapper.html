@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %} | BSUIR OPEN XII</title>
+    <link rel="shortcut icon" type="image/ico" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/button.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    {% include 'includes/ya_metrika.html' %}
+</head>
+<body>
+    {% include 'includes/header.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'includes/footer.html' %}
+</body>
+</html>

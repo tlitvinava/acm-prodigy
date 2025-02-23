@@ -1,0 +1,13 @@
+**/__pycache__/
+.idea
+/venv/
+/.venv/
+access.log
+error.log
+*.sqlite3
+usernames.txt
+**/mails/*
+**/.DS_Store
+**/.env
+static/admin
+static/flags

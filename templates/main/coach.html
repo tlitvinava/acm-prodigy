@@ -1,0 +1,56 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+
+{% block title %}
+Добавить тренера
+{% endblock %}
+
+{% block content %}
+<main>
+    <article class="login full-screen noised d-flex align-center justify-center">
+        <div class="container d-flex direction-column align-center">
+            <h2 class="form-header">
+                Добавить тренера
+            </h2>
+            <form method="POST" class="form d-flex direction-column align-center">
+                {% csrf_token %}
+                <div class="form-input__wrap required-input">
+                    {{form.lastname}}
+                </div>
+                <div class="form-input__wrap required-input">
+                    {{form.firstname}}
+                </div>
+                <div class="form-input__wrap required-input">
+                    {{form.secondname}}
+                </div>
+                <div class="form-input__wrap required-input">
+                    {{form.email}}
+                </div>
+                <div class="form-input__wrap required-input">
+                    {{form.phone}}
+                </div>
+                <div class="form-select__wrap required-input">
+                    {{form.tshirt_size}}
+                </div>
+                <p class="form-info">
+                    *-поля, обязательные для заполнения
+                    </br>
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors%}
+                            {{error}}
+                            </br>
+                        {% endfor %}
+                    {% endfor %}
+                </p>
+                <a class="btn-star submit">
+                    Добавить
+                </a>
+            </form>
+        </div>
+    </article>
+</main>
+<script src="{% static 'assets/js/form-select.js' %}">
+</script>
+<script src="{% static 'assets/js/forms.js' %}">
+</script>
+{% endblock %}

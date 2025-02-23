@@ -1,0 +1,59 @@
+{% extends "wrapper.html" %}
+
+{% block title %}
+{{page_name}}
+{% endblock %}
+
+{% block content %}
+<main>
+    <article class="teams noised full-screen d-flex" style="overflow: auto;">
+        <div class="container">
+            <h2>{{page_name}}</h2>
+            <div class="table__wrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Участник 1</th>
+                            <th>Участник 2</th>
+                            <th>Участник 3</th>
+                            <th>Тренер</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for team in teams %}
+                        <tr>
+                            <td>{{team.name}}</td>
+                            <td>
+                                {% if team.participants.all().count() >= 1%}
+                                {{team.participants.all().0.fullname}}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if team.participants.all().count() >= 2 %}
+                                {{team.participants.all().1.fullname}}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if team.participants.all().count() >= 3 %}
+                                {{team.participants.all().2.fullname}}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if team.coach %}
+                                {{team.coach.fullname}}
+                                {% endif %}
+                            </td>
+                            <td>{{team.get_status_display()}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </article>
+</main>
+
+
+{% endblock %}

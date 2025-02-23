@@ -1,0 +1,24 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+
+
+{% block title %}
+Подтверждение регистрации
+{% endblock %}
+
+{% block content %}
+<main>
+    <article class="login full-screen noised d-flex align-center justify-center">
+        <div class="container d-flex direction-column align-center">
+            <h2 class="form-header">Нажатием кнопки вы подтверждаете правильность указанной вами информации об участниках олимпиады.
+                После подтверждения информации, вы не сможете изменить информацию о команде.</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <a class="btn-star submit">Подтверждаю</a>
+            </form>
+        </div>
+    </article>
+</main>
+
+<script src="{% static 'assets/js/forms.js' %}"></script>
+{% endblock %}
