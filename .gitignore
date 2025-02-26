@@ -12,3 +12,4 @@ usernames.txt
 **/.env
 static/admin
 static/flags
+staticfiles/
