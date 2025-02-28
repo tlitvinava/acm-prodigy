@@ -12,21 +12,15 @@ services:
 
   web:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
-    ports:
-      - "8000:8000"
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/app/staticfiles
       - media_volume:/app/media
       - .:/app
     env_file: .env
-    environment:
-      - DEBUG=true
 
   postgres:
     image: postgres
-    ports:
-      - "6401:5432"
     environment:
       - PG_DATA=/data/postgres
     env_file: .env
