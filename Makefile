@@ -19,6 +19,9 @@ else
 	RUN_COMMAND = $(LOCAL_RUN)
 endif
 
+version:
+	@echo "$(VERSION)"
+
 run: prod-build
 	@echo "Running for $(ENV) environment"
 	$(RUN_COMMAND)
