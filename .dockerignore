@@ -1,0 +1,8 @@
+venv/
+.venv/
+front/
+.coverage
+.cache
+.vscode
+.idea
+db.sqlite3

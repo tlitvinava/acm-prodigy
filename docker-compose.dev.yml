@@ -1,0 +1,40 @@
+services:
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - web
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    ports:
+      - 80:80
+
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - .:/app
+    env_file: .env
+    environment:
+      - DEBUG=true
+
+  postgres:
+    image: postgres
+    ports:
+      - "6401:5432"
+    environment:
+      - PG_DATA=/data/postgres
+    env_file: .env
+    volumes:
+      - pg-data:/data/postgres
+
+volumes:
+  pg-data:
+  static_volume:
+  media_volume:
+  nginx_volume:

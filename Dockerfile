@@ -1,13 +1,22 @@
 FROM python:3.12-alpine
 
-WORKDIR /app
+ENV APP_HOME=/app
 
-EXPOSE 8000
+WORKDIR $APP_HOME
 
-COPY requirements.txt .
+RUN mkdir -p $APP_HOME/staticfiles
+RUN mkdir -p $APP_HOME/media
 
-RUN pip3 install -r requirements.txt
+COPY pyproject.toml poetry.lock $APP_HOME
 
-COPY . .
+RUN python -m pip install --no-cache-dir poetry==1.7.1 \
+    && poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi \
+    && rm -rf $(poetry config cache-dir)/{cache,artifacts}
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+COPY entrypoint.sh $APP_HOME
+COPY . $APP_HOME
+
+RUN chmod +x $APP_HOME/entrypoint.sh
+
+ENTRYPOINT ["sh", "/app/entrypoint.sh"]
