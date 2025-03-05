@@ -42,5 +42,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.OWNER_LC }}/${{ env.REPO_NAME }}:v.${{ env.VERSION  }}
+            ${{ env.REGISTRY }}/${{ env.OWNER_LC }}/${{ env.REPO_NAME }}:v${{ env.VERSION  }}
             ${{ env.REGISTRY }}/${{ env.OWNER_LC }}/${{ env.REPO_NAME }}:latest

@@ -14,7 +14,7 @@ from config.settings import RECAPTCHA_PUBLIC_KEY
 from main.models import Coach, Participant, Team
 from main.services import get_available_reg, get_credentials_show, get_olympiad_type
 from main.mixins import LanguageMixin
-
+from main.utils import Configuration
 
 
 class IndexView(LanguageMixin, TemplateView):
@@ -44,14 +44,44 @@ class SignUpView(LanguageMixin, CreateView):
     template_name = 'main/registration/signup.html'
 
     def get(self, request, *args, **kwargs):
+        agreement = Configuration('configuration.agreement')
+        agreement_url = Configuration('configuration.agreement.url')
+
         return self.render_page(request, self.template_name, {
             'signup' : 'active',
             'captcha_key' : RECAPTCHA_PUBLIC_KEY,
-            'form': self.get_form()
+            'form': self.get_form(),
+            'agreement': agreement,
+            'agreement_url': agreement_url,
         })
 
     def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
+        form = self.form_class(request.POST)
+        print(request.POST)
+        agreement = Configuration('configuration.agreement')
+        agreement_url = Configuration('configuration.agreement.url')
+
+        if form.is_valid():
+            if (
+                Configuration('configuration.agreement') == 'true' and
+                not form.cleaned_data['personal_data_agreement']
+            ):
+                form.add_error('personal_data_agreement', 'Required field')
+            else:
+                form.save()
+                return redirect(self.success_url)
+        print(form.errors)
+
+        return self.render_page(
+            request,
+            self.template_name,
+            {
+                'form': form,
+                'disable_footer': True,
+                'agreement': agreement,
+                'agreement_url': agreement_url,
+            }
+        )
 
 
 class UserLoginView(LanguageMixin, LoginView):
@@ -60,7 +90,14 @@ class UserLoginView(LanguageMixin, LoginView):
     template_name = 'main/registration/login.html'
 
     def get(self, request, *args, **kwargs):
-        return self.render_page(request, self.template_name, {'form': self.get_form()})
+        return self.render_page(
+            request,
+            self.template_name,
+            {
+                'form': self.get_form(),
+                'login': 'active',
+            }
+        )
 
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)

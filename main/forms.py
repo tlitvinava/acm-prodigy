@@ -16,6 +16,7 @@ class AuthUserForm(AuthenticationForm, forms.ModelForm):
 
 class CreateUserForm(UserCreationForm):
     captcha = ReCaptchaField()
+    personal_data_agreement = forms.BooleanField(initial=False, required=False)
 
 class CreateParticipantForm(forms.ModelForm):
 
@@ -38,15 +39,15 @@ class CreateParticipantForm(forms.ModelForm):
         super(CreateParticipantForm, self).__init__(*args, **kwargs)
         self.fields['student_status'].widget.attrs.update({
             'data-default': 'Статус',
-            'class': 'btn-star-input'
+            'class': 'selects'
         })
         self.fields['tshirt_size'].widget.attrs.update({
             'data-default': 'Размер майки',
-            'class': 'btn-star-input'
+            'class': 'selects'
         })
         self.fields['country'].widget.attrs.update({
             'data-default': 'Страна',
-            'class': 'btn-star-input'
+            'class': 'selects'
         })
 
         self.fields['firstname'].widget.attrs.update({'placeholder': 'Имя', 'class': 'btn-star-input'})
@@ -106,4 +107,4 @@ class CreateCoachForm(forms.ModelForm):
         self.fields['lastname'].widget.attrs.update({'placeholder': 'Фамилия'})
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
         self.fields['phone'].widget.attrs.update({'placeholder': 'Номер телефона'})
-        self.fields['tshirt_size'].widget.attrs.update({'data-default': 'Размер майки'})
+        self.fields['tshirt_size'].widget.attrs.update({'class': 'selects', 'data-default': 'Размер майки'})

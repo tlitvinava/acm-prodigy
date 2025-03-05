@@ -1,50 +1,51 @@
 {% extends 'wrapper.html' %}
 {% load static %}
 
- 
 {% block title %}
-Регистриция пользователя
+{{tr.registration}}
 {% endblock %}
 
 {% block content %}
-<main>
-    <article class="login full-screen noised d-flex align-center justify-center">
-        <div class="container d-flex direction-column align-center">
-            <h2 class="form-header">
-                Регистрация
-            </h2>
-            <form method="POST" class="form d-flex direction-column align-center">
-                {% csrf_token %}
-                <div class="form-input__wrap">
-                    <input required="" class="btn-star-input" name="username" autocomplete="username" id="username" type="text" placeholder="Имя пользователя">
-                    </input>
-                </div>
-                <div class="form-input__wrap">
-                    <input required="" class="btn-star-input" name="password1" autocomplete="password1" id="password1" type="password" placeholder="Пароль">
-                    </input>
-                </div>
-                <div class="form-input__wrap">
-                    <input required="" class="btn-star-input" name="password2" autocomplete="password2" id="password2" type="password" placeholder="Ещё раз пароль">
-                    </input>
-                </div>
-                <div class="g-recaptcha" data-sitekey="{{ captcha_key }}">
-                </div>
-                <p class="form-info">
-                    {% for field, errors in form.errors.items %}
-                        {% for error in errors %}
-                            {{error}}
-                            <br />
-                            <br />
-                        {% endfor %}
-                    {% endfor %}
-                </p>
-                <a class="btn-star submit">
-                    Зарегистрироваться
-                </a>
-            </form>
-        </div>
-    </article>
+
+<main class="signUp">
+  <form class="reg-form" method="post" id="signup-form">
+  <hi class="title auth-title">{{tr.registration}}</hi>
+    {% csrf_token %}
+    <input type="text" aria-label="Имя" class="input" placeholder="{{tr.username}}" name="username" required/>
+    <input
+      type="password"
+      aria-label="Пароль"
+      class="input"
+      name="password1"
+      placeholder="{{tr.password}}"
+      required
+    />
+    <input
+      type="password"
+      aria-label="Повторите пароль"
+      class="input"
+      name="password2"
+      placeholder="{{tr.repeat_password}}"
+      required
+    />
+    {{form.captcha}}
+  <p class="wrong-inf">
+    {% for field, errors in form.errors.items %}
+      {% for error in errors %}
+        {{error}}
+        <br />
+        <br />
+      {% endfor %}
+    {% endfor %}
+  </p>
+  {% if agreement %}
+  <label class="confirm confirm-text">
+    <input name="personal_data_agreement" required type="checkbox" class="checkbox" />
+    <span class="checkmark"></span>
+    <p>{{tr.policy_agree}} <a class="policy" target="_blank" href="{{ agreement_url }}">{{tr.policy}}</a></p>
+  </label>
+  {% endif %}
+  <button form="signup-form" type="submit" class="button signUp-button">{{tr.signup}}</button>
+</form>
 </main>
-<script src="{% static 'assets/js/forms.js' %}">
-</script>
 {% endblock content %}

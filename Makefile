@@ -28,10 +28,26 @@ run: prod-build
 
 build:
 	@echo "Building image version $(VERSION)"
-	docker build --tag acm:$(VERSION) .
+	docker build --tag acm:v.$(VERSION) .
 
 prod-build:
 	@if [ "$(ENV)" = "prod" ]; then \
 		echo "Build docker image for prod environment."; \
 		$(MAKE) build; \
+	fi
+
+migrations:
+	@if [ "$(ENV)" = "local" ]; then \
+		python3 manage.py makemigrations; \
+		python3 manage.py migrate; \
+	fi
+
+createsuperuser:
+	@if [ "$(ENV)" = "local" ]; then \
+		python3 manage.py createsuperuser;\
+	fi
+
+translations:
+	@if [ "$(ENV)" = "local" ]; then \
+		python3 manage.py load_translations translations.json --force;\
 	fi

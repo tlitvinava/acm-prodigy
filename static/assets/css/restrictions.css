@@ -1,0 +1,42 @@
+body {
+    font-family: 'Frutiger Neue LT Regular', sans-serif;
+    background-color: var(--background-color);
+    color: var(--white);
+
+    position: inherit;
+    height: 100vh;
+}
+
+footer {
+    position: absolute;
+    bottom: 0
+}
+
+.container_res {
+    padding: 160px 40px 40px 100px;
+}
+
+.res_headline {
+    font-size: 48px;
+}
+
+.res_text {
+    font-size: 20px;
+    padding-top: 40px;
+}
+
+.res_list {
+    font-size: 20px;
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    footer {
+        position: relative;
+    }
+
+    .container_res {
+        padding: 80px 20px 20px 20px;
+    }
+}

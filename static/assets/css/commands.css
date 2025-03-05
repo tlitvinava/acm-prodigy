@@ -1,0 +1,72 @@
+
+body {
+    font-family: 'Frutiger Neue LT Regular', sans-serif;
+    background-color: var(--background-color);
+}
+
+.container_com {
+    padding: 200px 100px 100px 100px;
+}
+
+.header_com {
+    color: var(--white);
+    font-size: 72px;
+}
+
+.grid_com {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    row-gap: 22px;
+    column-gap: 22px;
+}
+
+.table {
+    margin: 30px 10px 0 10px;
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--white);
+}
+
+.table thead th, 
+.table tbody td {
+    border: 2px solid var(--white);
+    padding: 8px;
+    text-align: center;
+}
+
+.table thead th {
+    font-size: 22px;
+}
+
+.table tbody td {
+    font-size: 18px;
+}
+
+@media screen and (max-width: 480px) {
+    .header_com {
+        font-size: 23px;
+    }
+
+    .container_com {
+        padding: 100px 30px 30px 30px;
+    }
+
+    .table {
+        margin: 0;
+        width: 100%;
+    }
+
+    .table thead th, 
+    .table tbody td {
+        padding: 4px;
+    }
+
+    .table thead th {
+        font-size: 12px;
+    }
+
+    .table tbody td {
+        font-size: 10px;
+    }
+}

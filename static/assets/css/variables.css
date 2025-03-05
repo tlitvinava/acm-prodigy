@@ -1,0 +1,22 @@
+:root {
+    --background-color: #1E356F;
+    --button-color: #cee3ff;
+    --avia-blue: #1E356F;
+    --white: #fff;
+    --error: rgba(255, 0, 0, 0.8);
+    --placeholder-color: rgba(30, 53, 111, 0.6);
+    --grey: #333;
+    --regular: 'Frutiger Neue LT Regular';
+    --bold: 'Frutiger Neue LT Bold';
+    --cn-blk: 'Frutiger Neue LT CnBlk';
+    --cn-bold-it: 'Frutiger Neue LT CnBoldIt';
+    --button-border-radius: 15px;
+    --border-radius: 24px;
+}
+
+@media (width <= 875px) {
+    :root {
+        --button-border-radius: 10px;
+        --border-radius: 15px;
+    }
+}

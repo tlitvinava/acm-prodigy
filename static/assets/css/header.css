@@ -1,0 +1,59 @@
+@keyframes run {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.header {
+    position: fixed;
+    z-index: 10;
+    background-color: var(--white);
+    max-height: 149px;
+    border-radius: 0 0 24px 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 28.75px;
+}
+
+.running-line {
+    color: var(--avia-blue);
+    font-size: 24px;
+    font-family: 'Frutiger Neue LT CnBoldIt', sans-serif;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.slider_item {
+    display: inline-block;
+    padding-left: 100%;
+    animation: run 20s linear infinite;
+}
+
+.menu-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.main-buttons {
+    display: flex;
+    gap: 23px;
+}
+
+.extra-buttons {
+    display: flex;
+    gap: 28px;
+}
+
+.translate-button {
+    position: relative;
+    bottom: 10px;
+    scale: 0.8;
+}

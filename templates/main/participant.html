@@ -3,58 +3,135 @@
 
 
 {% block title %}
-Добавить участника
+{{ tr.add_participant }}
 {% endblock %}
 
 {% block content %}
-
-<main>
-    <article class="login full-screen noised d-flex align-center justify-center">
-        <div class="container d-flex direction-column align-center">
-            <h2 class="form-header">Добавить/изменить участника</h2>
-            <form method="POST" class="form d-flex direction-column align-center">
-                {% csrf_token %}
-                <div class="form-input__wrap required-input">
-                    {{form.lastname}}
-                </div>
-                <div class="form-input__wrap required-input">
-                    {{form.firstname}}
-                </div>
-                <div class="form-input__wrap required-input">
-                    {{form.secondname}}
-                </div>
-                <div class="form-input__wrap required-input">
-                    {{form.education}}
-                </div>
-                <div class="form-input__wrap required-input">
-                    {{form.email}}
-                </div>
-                <div class="form-input__wrap required-input">
-                    {{form.phone}}
-                </div>
-                <div class="form-select__wrap required-input">
-                    {{form.student_status}}
-                </div>
-                <div class="form-select__wrap required-input">
-                    {{form.tshirt_size}}
-                </div>
-                <div class="form-select__wrap required-input">
-                    {{form.country}}
-                </div>
-                <p class="form-info">
-                    *-поля, обязательные для заполнения <br>
-                    {% for field, errors in form.errors.items %}
-                    {% for error in errors %}
-                        {{error}}</br>
-                    {% endfor %}
-                    {% endfor %}
-                </p>
-                <a class="btn-star submit">Сохранить</a>
-            </form>
+<form method="post" id="participant-form">
+{% csrf_token %}
+<div class="container">
+    <p class="title headline">{{ tr.adding_participant }}</p>
+    <div class="grid">
+      <div class="grid_item">
+        <div class="name_input_container">
+          <input type="text" name="lastname" class="input" placeholder="{{tr.add_coach_page_lastname}}" value="{% if form.lastname.value %}{{ form.lastname.value }}{% endif %}"/>
+          <div class="alarm">
+            <img
+              src="{% static 'assets/img/arrows/star.png' %}"
+            />
+          </div>
         </div>
-    </article>
-</main>
-<script src="{% static 'assets/js/form-select.js' %}"></script>
-<script src="{% static 'assets/js/forms.js' %}"></script>
+      </div>
+      <div class="grid_item">
+        <div class="name_input_container">
+          <input type="text" name="firstname" class="input" placeholder="{{tr.add_coach_page_firstname}}" value="{% if form.firstname.value %}{{ form.firstname.value }}{% endif %}"/>
+          <div class="alarm">
+            <img
+              src="{% static 'assets/img/arrows/star.png' %}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="grid_item">
+        <div class="name_input_container">
+          <input type="text" name="secondname" class="input" placeholder="{{tr.add_coach_page_secondname}}" value="{% if form.secondname.value %}{{ form.secondname.value }}{% endif %}"/>
+          <div class="alarm">
+            <img
+              src="{% static 'assets/img/arrows/star.png' %}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="grid_item">
+        <div class="name_input_container">
+          <input type="text"name="education" class="input" placeholder="{{tr.education}}" value="{% if form.education.value %}{{ form.education.value }}{% endif %}"/>
+          <div class="alarm">
+            <img
+              src="{% static 'assets/img/arrows/star.png' %}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="grid_item">
+        <div class="name_input_container">
+          <input type="text" name="email" class="input" placeholder="E-mail" value="{% if form.email.value %}{{ form.email.value }}{% endif %}"/>
+          <div class="alarm">
+            <img
+              src="{% static 'assets/img/arrows/star.png' %}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="grid_item">
+        <div class="name_input_container">
+          <input type="text" name="phone" class="input" placeholder="{{tr.phone}}" value="{% if form.phone.value %}{{ form.phone.value }}{% endif %}"/>
+          <div class="alarm">
+            <img
+              src="{% static 'assets/img/arrows/star.png' %}"
+            />
+          </div>
+        </div>
+      </div>
+      
+        <div class="grid_item">
+            {{ form.student_status }}
+            <div class="arrow">
+            <img
+                class="arrowimg"
+                src="{% static 'assets/img/arrows/up.png' %}"
+            />
+            </div>
+            <div class="alarm">
+            <img
+                src="{% static 'assets/img/arrows/star.png' %}"
+            />
+            </div>
+        </div>
+        <div class="grid_item">
+            {{ form.tshirt_size }}
+            <div class="arrow">
+            <img
+                class="arrowimg"
+                src="{% static 'assets/img/arrows/up.png' %}"
+            />
+            </div>
+            <div class="alarm">
+            <img
+                src="{% static 'assets/img/arrows/star.png' %}"
+            />
+            </div>
+        </div>
+        <div class="grid_item">
+            {{ form.country }}
+            <div class="arrow">
+            <img
+                class="arrowimg"
+                src="{% static 'assets/img/arrows/up.png' %}"
+            />
+            </div>
+            <div class="alarm">
+            <img
+                src="{% static 'assets/img/arrows/star.png' %}"
+            />
+            </div>
+        </div>
+    </div>
 
+    <div class="dirow center">
+        <div class="flex restriction restriction_center">
+            <h6>{{tr.add_coach_page_required_fields}}
+                <br>
+                {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    {{error}}</br>
+                {% endfor %}
+                {% endfor %}
+            </h6>
+        </div>
+        <div class="flex button_add">
+            <button class="button signUp-button">{{tr.add_participant}}</button>
+        </div>
+    </div>
+</div>
+</form>
 {% endblock %}

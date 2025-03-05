@@ -1,43 +1,43 @@
 {% extends "wrapper.html" %}
 
 {% block title %}
-{{page_name}}
+{{tr.team_list}}
 {% endblock %}
 
 {% block content %}
 <main>
     <article class="teams noised full-screen d-flex" style="overflow: auto;">
-        <div class="container">
-            <h2>{{page_name}}</h2>
+        <div class="team-list">
+            <h2 class="title text-left">{{tr.team_list}}</h2>
             <div class="table__wrap">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Название</th>
-                            <th>Участник 1</th>
-                            <th>Участник 2</th>
-                            <th>Участник 3</th>
-                            <th>Тренер</th>
-                            <th>Статус</th>
+                            <th class="header-text">{{ tr.team_name }}</th>
+                            <th class="header-text">{{ tr.participant }} 1</th>
+                            <th class="header-text">{{ tr.participant }} 2</th>
+                            <th class="header-text">{{ tr.participant }} 3</th>
+                            <th class="header-text">{{ tr.coach }}</th>
+                            <th class="header-text">{{ tr.status }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for team in teams %}
-                        <tr>
+                        <tr class="underlined">
                             <td>{{team.name}}</td>
                             <td>
-                                {% if team.participants.all().count() >= 1%}
-                                {{team.participants.all().0.fullname}}
+                                {% if team.participants.all.count >= 1%}
+                                {{team.participants.all.0.fullname}}
                                 {% endif %}
                             </td>
                             <td>
-                                {% if team.participants.all().count() >= 2 %}
-                                {{team.participants.all().1.fullname}}
+                                {% if team.participants.all.count >= 2 %}
+                                {{team.participants.all.1.fullname}}
                                 {% endif %}
                             </td>
                             <td>
-                                {% if team.participants.all().count() >= 3 %}
-                                {{team.participants.all().2.fullname}}
+                                {% if team.participants.all.count >= 3 %}
+                                {{team.participants.all.2.fullname}}
                                 {% endif %}
                             </td>
                             <td>
@@ -45,7 +45,7 @@
                                 {{team.coach.fullname}}
                                 {% endif %}
                             </td>
-                            <td>{{team.get_status_display()}}</td>
+                            <td>{{team.get_status_display}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

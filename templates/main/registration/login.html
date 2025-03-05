@@ -2,42 +2,42 @@
 {% load static %}
 
 {% block title %}
-Авторизация
+    {{tr.authorization}}
 {% endblock %}
 
 {% block content %}
-<main>
-    <article class="login full-screen noised d-flex align-center justify-center">
-        <img src="{% static 'assets/img/backLogo.svg' %}" alt="Картинка" class="background-figure figure3">
-        </img>
-        <div class="container d-flex direction-column align-center">
-            <h2 class="form-header">
-                Вход в личный кабинет
-            </h2>
-            <form action="#" method="POST" class="form d-flex direction-column align-center">
-                {% csrf_token %}
-                <div class="form-input__wrap">
-                    <input required="" class="btn-star-input" name="username" id="username" autocomplete="username" type="text" placeholder="Имя пользователя">
-                    </input>
-                </div>
-                <div class="form-input__wrap">
-                    <input required="" class="btn-star-input" name="password" id="password" autocomplete="password" type="password" placeholder="Пароль">
-                    </input>
-                </div>
-                <p class="form-info">
-                    {% for field, errors in form.errors.items %}
-                        {% for error in errors %}
-                            {{error}}<br />
-                        {% endfor %}
-                    {% endfor %}
-                </p>
-                <a class="btn-star submit">
-                    Войти
-                </a>
-            </form>
-        </div>
-    </article>
+<main class="signUp">
+  <hi class="title auth-title">{{tr.authorization}}</hi>
+  <form class="reg-form" method="post" id="login-form">
+    {% csrf_token %}
+    <input
+      type="text"
+      aria-label="Имя"
+      class="input"
+      placeholder="{{tr.username}}"
+      name="username"
+    />
+    <input
+      type="password"
+      name="password"
+      aria-label="Пароль"
+      class="input"
+      placeholder="{{tr.password}}"
+    />
+  </form>
+  <p class="wrong-inf">
+    {% for field, errors in form.errors.items %} {% for error in errors %}
+    {{error}}
+    <br />
+    <br />
+    {% endfor %} {% endfor %}
+  </p>
+  <span class="no-account">
+    {{tr.no_account}}?
+    <a href="{% url 'signup' %}" class="signUp-link">{{tr.signup}}!</a>
+  </span>
+  <button form="login-form" class="button signUp-button" type="submit">
+    {{tr.login_action}}
+  </button>
 </main>
-<script src="{% static 'assets/js/forms.js' %}">
-</script>
 {% endblock %}

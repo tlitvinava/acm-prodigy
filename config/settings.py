@@ -37,9 +37,13 @@ if DEBUG:
     RECAPTCHA_PUBLIC_KEY = os.getenv("DBG_RECAPTCHA_PUBLIC_KEY")
     RECAPTCHA_SECRET_KEY = os.getenv("DBG_RECAPTCHA_SECRET_KEY")
 
-ALLOWED_HOSTS = [
-    '*',
-]
+# Allowed hosts configuration
+
+allowed_hosts = os.getenv("ALLOWED_HOSTS",'localhost').split(',')
+cors_origins = os.getenv("CORS_ORIGINS",'localhost').split(',')
+
+ALLOWED_HOSTS = allowed_hosts
+CSRF_TRUSTED_ORIGINS = cors_origins
 
 # Application definition
 

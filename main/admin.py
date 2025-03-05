@@ -10,7 +10,16 @@ from main.models import (
     Coach,
     TranslationKey,
     Translation,
+    Settings,
 )
+
+
+@admin.register(Settings)
+class SettingsAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'value',
+    )
 
 
 class TranslationInline(admin.TabularInline):

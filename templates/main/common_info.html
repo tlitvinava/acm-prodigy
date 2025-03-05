@@ -1,80 +1,49 @@
 {% extends 'wrapper.html' %}
 
 {% block title %}
-Общая информация
+{{ tr.common_info_page_titl }}
 {% endblock %}
 
 {% block content %}
 <main>
     <article class="common-info large-text noised d-flex">
         <div class="container">
-            <h2></h2>
-            <h3>Общая информация отборочного тура</h3>
-            <h4>Цель отборочного тура:</h4>
+            <h3 class="title subtitle">{{ tr.common_info_page_qualification }}</h3>
+            <h4 class="title subsubtitle">{{ tr.common_info_page_qualification_purpose }}</h4>
 
             <ul>
-                <li>дать возможность командам самостоятельно оценить уровень подготовки к участию в Чемпионате;</li>
-                <li>отобрать команды, которые смогут бороться во втором отборочном туре (полуфинале) за выход в финал
-                    Чемпионата.</li>
+                <li class="text">{{ tr.common_info_page_qualification_goals_1 }}</li>
+                <li class="text">{{ tr.common_info_page_qualification_goals_2 }}</li>
             </ul>
 
-            <p class="color-red">Начало отборочного тура: 19 марта 2024 года в 16:00.<br>
-                Окончание отборочного тура: 25 марта 2024 года в 05:00.</p>
+            <p class="color-red text">{{ tr.common_info_page_qualification_dates_1 | safe }}<br>
+                {{ tr.common_info_page_qualification_dates_2 | safe}}</p>
 
-            <p>Четвертьфинал является обязательным отборочным этапом для команд БГУИР и школьников. Остальные команды по
-                желанию также
-                могут принять участие в данном туре.</p>
+            <p class="text">{{ tr.common_info_page_qualification_rules }}</p>
 
-            <p>Команды, решившие <b>не менее половины</b> из предложенных задач, проходят во второй отборочный тур
-                (полуфинал
-                соревнований).</p>
+            <p class="text">{{ tr.common_info_page_qualification_pass_condition | safe }}</p>
 
-            <h4>Доступ к системе тестирования:</h4>
+            <h4 class="title subsubtitle">{{ tr.common_info_page_access_to_system }}</h4>
 
-            <p>Условия задач доступны в разделе задачи и в тестирующей системе.</p>
+            <p class="text">{{ tr.common_info_page_statements_availability }}</p>
 
-            <p>Для участия в отборочном этапе необходимо, чтобы регистрация была подтверждена. Список зарегистрированных
-                команд и их
-                статус можно посмотреть по <a class="underscored" href="{% url 'team-list' %}">ссылке</a></p>
+            <p class="text">{{ tr.common_info_page_registration_confirmation | safe }}</p>
 
-            <p>Логины и пароли для доступа к тестирующей системе указаны в личном кабинете.</p>
-            <h3>Общая информация полуфинала</h3>
-            <p>Полуфинал XII Международного открытого чемпионата БГУИР по программированию пройдет <span
-                    class="color-red">4 апреля с 14:00 до 19:00 по минскому
-                    времени</span>. Для входа в тестирующую систему будут использоваться новые логины и пароли (будут
-                разосланы по почте перед
-                началом контеста).</p>
-            <p>Напомним, что данный этап является обязательным в том числе для команд из других вузов. Список участников
-                полуфинала
-                можно найти по <a class="underscored" href="{% url 'semifinal' %}">ссылке.</a></p>
-            <p>По правилам наших соревнований второй отборочный этап (полуфинал) команды должны решать в своих
-                учреждениях образования,
-                однако окончательное решение о месте проведения контеста остается за тренером команды. Участвовать в
-                полуфинале можно в
-                учебных аудиториях БГУИР только при предварительном уведомлении организационного комитета по средства
-                письма на
-                электронный адрес acm@bsuir.by в срок до <b>27.03.2023 13:00</b>.</p>
-            <p>Вот простые правила fair-play, которые <b>необходимо соблюдать</b> во время полуфинального контеста:</p>
+            <p class="text">{{ tr.common_info_page_logins_passwords }}</p>
+            <h3 class="title subtitle">{{ tr.common_info_page_semifinal_info }}</h3>
+            <p class="text">{{ tr.common_info_page_semifinal_dates | safe }}</p>
+            <p class="text">{{ tr.common_info_page_semifinal_participants | safe }}</p>
+            <p class="text">{{ tr.common_info_page_semifinal_rules | safe }}</p>
+            <p class="text">{{ tr.common_info_page_fair_play_rules | safe }}</p>
             <ul>
-                <li>Команда должна использовать только один компьютер для решения контеста. Исключение: если участники
-                    команды решают
-                    контест удаленно друг от друга, то для написания кода разрешается использовать ТОЛЬКО ОДНУ
-                    клавиатуру в один момент
-                    времени; допускается использование чатов и аудио и видео коммуникации внутри команды.</li>
-                <li>Допускается чтение условий (и ничего кроме этого) с разных устройств.</li>
-                <li>Разрешается общаться только с членами своей команды и через тестирующую систему с представителями
-                    жюри.</li>
-                <li>Запрещается обсуждать идеи и обмениваться условиями и решениями задач вне команды. Также запрещено
-                    публиковать или
-                    делиться любой информацией, имеющей отношение к задачам, до окончания полуфинала.</li>
-                <li>Разрешено использовать предварительно написанный участниками команды код или любой другой код,
-                    который находился в
-                    публичном доступе до начала полуфинала.</li>
-                <li>Разрешается пользоваться справочными интернет-ресурсами.</li>
+                <li class="text">{{ tr.common_info_page_fair_play_rules_list_1 }}</li>
+                <li class="text">{{ tr.common_info_page_fair_play_rules_list_2 }}</li>
+                <li class="text">{{ tr.common_info_page_fair_play_rules_list_3 }}</li>
+                <li class="text">{{ tr.common_info_page_fair_play_rules_list_4 }}</li>
+                <li class="text">{{ tr.common_info_page_fair_play_rules_list_5 }}</li>
+                <li class="text">{{ tr.common_info_page_fair_play_rules_list_6 }}</li>
             </ul>
-            <p>Команды, которые нарушат правила, будут дисквалифицированы. В случае возникновения спорных ситуаций бремя
-                доказательства
-                соблюдения правил полностью ложится на участников.</p>
+            <p class="text">{{ tr.common_info_page_disqualification_warning }}</p>
         </div>
     </article>
 </main>
