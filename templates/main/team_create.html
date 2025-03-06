@@ -10,35 +10,27 @@
 <div class="container">
     <form method="post" id="create-team">
         {% csrf_token %}
-        <input type="number" name="command_type" style="display: none;" value="0">
-        <input type="number" name="univer_type" style="display: none;" value="0">
+        <input type="number" form="create-team" name="command_type" style="display: none;" value="0">
+        <input type="number" form="create-team" name="univer_type" style="display: none;" value="0">
     </form>
     <p class="title headline">
         {{ tr.creating_team }}
     </p>
     <div class="options">
-        <div class="option univer-type">
-            <button class="item brleft active-form-button" id="school" data-key="0">
-                <h4 class="item-text">
-                    {{ tr.schoolar_team }}
-                </h4>
+        <div class="option command-type">
+            <button class="item brleft item-text active-form-button" id="school" data-key="0">
+                {{ tr.schoolar_team }}
             </button>
-            <button class="item brright" id="university" data-key="1">
-                <h4 class="item-text">
-                    {{ tr.students_team }}
-                </h4>
+            <button class="item brright item-text" id="university" data-key="1">
+                {{ tr.students_team }}
             </button>
         </div>
-        <div class="option command-type">
-            <button class="item brleft active-form-button" id="whole" data-key="0">
-                <h4 class="item-text">
-                    {{ tr.university_type_same_institution }}
-                </h4>
+        <div class="option univer-type">
+            <button class="item brleft item-text active-form-button" id="whole" data-key="0">
+                {{ tr.university_type_same_institution }}
             </button>
-            <button class="item brright" id="mixed" data-key="1">
-                <h4 class="item-text">
-                    {{ tr.university_type_mixed }}
-                </h4>
+            <button class="item brright item-text" id="mixed" data-key="1">
+                {{ tr.university_type_mixed }}
             </button>
         </div>
     </div>
