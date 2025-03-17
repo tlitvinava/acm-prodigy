@@ -64,6 +64,7 @@ class TeamAdmin(admin.ModelAdmin):
         '__str__',
         'status',
         'type',
+        'system_login'
     )
     search_fields = ['name', 'participants__lastname',
                      'coach__lastname', 'system_login']
