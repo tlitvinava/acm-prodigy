@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import tomllib
 from pathlib import Path
 from datetime import datetime
 
@@ -216,3 +217,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
+
+# Getting version of project
+
+PROJECT_META = None
+with open('pyproject.toml', 'rb') as f:
+    PROJECT_META = tomllib.load(f)
+
+VERSION = PROJECT_META['tool']['poetry']['version']

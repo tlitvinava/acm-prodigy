@@ -1,6 +1,7 @@
 import requests
 from uuid import uuid4
 from django.contrib import admin
+from django.conf import settings
 from django.http import HttpResponse
 
 from main.utils import Configuration
@@ -12,6 +13,8 @@ from main.models import (
     Translation,
     Settings,
 )
+
+admin.site.site_header = f'ACM (ver. {settings.VERSION})'
 
 
 @admin.register(Settings)
