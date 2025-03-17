@@ -258,7 +258,7 @@ class TeamAdmin(admin.ModelAdmin):
                             'X-Solve-Sync': 'true'
                         }
                     )
-
+                    team.system_login = f'{scope}/{team.system_login}'
                     team.system_password = generate_resp.json()["password"]
                     team.save()
                     i += 1
