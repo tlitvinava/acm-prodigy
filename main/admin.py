@@ -90,7 +90,17 @@ class TeamAdmin(admin.ModelAdmin):
         'count_statistics',
         'reset',
         'generate_users',
+        'export_emails',
     ]
+
+    @admin.action(description='Export users emails')
+    def export_emails(self, request, queryset):
+        mails = set()
+        for team in queryset.all():
+            for part in team.participants.all():
+                mails.add(part.email.strip())
+        mails = mails - set(('', None))
+        return HttpResponse(', '.join(mails), content_type='text/plain; charset=utf-8')
 
     @admin.action(description='Mark selected teams as mail sent')
     def mark_as_sent(self, request, queryset):
