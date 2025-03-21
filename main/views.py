@@ -57,7 +57,6 @@ class SignUpView(LanguageMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
-        print(request.POST)
         agreement = Configuration('configuration.agreement')
         agreement_url = Configuration('configuration.agreement.url')
 
@@ -70,7 +69,6 @@ class SignUpView(LanguageMixin, CreateView):
             else:
                 form.save()
                 return redirect(self.success_url)
-        print(form.errors)
 
         return self.render_page(
             request,
