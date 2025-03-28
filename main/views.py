@@ -217,14 +217,7 @@ class CreateCoachView(LanguageMixin, LoginRequiredMixin, CreateView):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            coach = Coach(
-                firstname = form.cleaned_data['firstname'],
-                secondname = form.cleaned_data['secondname'],
-                lastname = form.cleaned_data['lastname'],
-                email = form.cleaned_data['email'],
-                phone = form.cleaned_data['phone'],
-                tshirt_size = form.cleaned_data['tshirt_size']
-            )
+            coach = Coach(**form.cleaned_data)
             coach.save()
             request.user.participant.team.coach = coach
             request.user.participant.team.save()
@@ -334,31 +327,16 @@ class CreateParticipantView(LanguageMixin, LoginRequiredMixin, CreateView):
             return redirect('team-detail')
 
         form = self.form_class(request.POST)
-
         if form.is_valid():
             participant = Participant(
-                firstname = form.cleaned_data['firstname'],
-                secondname = form.cleaned_data['secondname'],
-                lastname = form.cleaned_data['lastname'],
-                email = form.cleaned_data['email'],
-                phone = form.cleaned_data['phone'],
-                education = form.cleaned_data['education'],
-                student_status = form.cleaned_data['student_status'],
-                tshirt_size = form.cleaned_data['tshirt_size'],
-                country = form.cleaned_data['country'],
+                **form.cleaned_data,
                 team = request.user.participant.team,
             )
             participant.save()
 
             return redirect('team-detail')
 
-        return self.render_page(
-            request,
-            self.template_name,
-            {
-                'form':form,
-            }
-        )
+        return self.render_page(request, self.template_name, {'form':form,})
 
 
 class ChangeParticipantView(LanguageMixin, LoginRequiredMixin, View):
@@ -368,7 +346,6 @@ class ChangeParticipantView(LanguageMixin, LoginRequiredMixin, View):
 
     def get_participant_object(self):
         id_ = self.kwargs.get("id")
-
         return get_object_or_404(Participant, id=id_)
 
     def get(self, request, *args, **kwargs):
@@ -396,7 +373,6 @@ class ChangeParticipantView(LanguageMixin, LoginRequiredMixin, View):
             return redirect('team-detail')
 
         form = self.form_class(request.POST, instance=_participant)
-
         if form.is_valid():
             form.save()
             if get_olympiad_type()=='single' and _participant == request.user.participant:
