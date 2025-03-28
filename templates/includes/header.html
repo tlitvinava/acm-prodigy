@@ -1,122 +1,106 @@
 {% load static %}
-<header class="header">
-    <a href="mailto:acm@bsuir.by" class="nav-mail-button">
-        <img src="/static/assets/img/mail-white.png" alt="mail">
-        </img>
-    </a>
-    <nav class="nav">
-        <div class="nav-menu">
-            <div class="menu-top-bar d-flex align-center">
-                <div class="container">
-                    <button class="nav-close-button">
-                    </button>
-                </div>
-            </div>
-            <div class="menu d-flex align-center justify-center">
-                <div class="menu-buttons">
-                    <a href="{% url 'common-info' %}" class="menu-button">
-                        {{ tr.about }}
-                    </a>
-                    <a href="{% url 'rules' %}" class="menu-button">
-                        {{ tr.rules }}
-                    </a>
-                    <a href="{% url 'index' %}" class="menu-button grid-full-row">
-                        На главную
-                    </a>
-                    {% if request.user.is_authenticated %}
-                    <a href="{% url 'team-detail' %}" class="btn-star menu-button">
-                        Profile
-                    </a>
-                    <a href="{% url 'logout' %}" class="btn-star menu-button">
-                        Logout
-                    </a>
-                    {% else %}
-                    <a href="{% url 'signup' %}" class="btn-star menu-button">
-                        Register
-                    </a>
-                    <a href="{% url 'login' %}" class="btn-star menu-button">
-                        Login
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
+<header id="desktop-header">
+  <div class="running-line">
+    <p>
+      {{ tr.running_line }}&nbsp;
+    </p>
+    <p>
+      {{ tr.running_line }}&nbsp;
+    </p>
+  </div>
+  <nav class="menu">
+    <ul class="main-buttons">
+      <li>
+        <a href="{% url 'index' %}#main-section">
+          <button class="button" data-target="#main-section">{{ tr.main_page }}</button>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'index' %}#about">
+          <button class="button" data-target="#about">{{ tr.about }}</button>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'index' %}#stages">
+          <button class="button" data-target="#stages">{{ tr.stages }}</button>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'index' %}#timetable">
+          <button class="button" data-target="#timetable">{{ tr.schedule }}</button>
+        </a>
+      </li>
+      <!-- <li>
+        <a href="{% url 'index' %}#partners">
+          <button class="button" data-target="#partners">Партнеры</button>
+        </a>
+      </li> -->
+    </ul>
+    <ul class="extra-buttons">
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'team-detail' %}">
+        <button class="button {{team_page}}">{{ tr.profile }}</button>
+      </a>
+      <a href="{% url 'logout' %}">
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="button" type="submit">{{ tr.logout }}</button>
+        </form>
+      </a>
+      {% else %}
+      <a href="{% url 'login' %}">
+        <button class="button {{signup}} {{login}}">{{ tr.participate }}</button>
+      </a>
+      {% endif %}
+      <li>
+        <div class="language-switcher">
+          <button class="button" id="translate-button">
+            <img
+              class="translate-icon"
+              src="{% static 'assets/img/translate.svg' %}"
+              alt="translate icon"
+            />
+          </button>
+          <ul id="language-list" class="hidden">
+            <li><a href="?lang=ru" data-lang="ru">RU</a></li>
+            <li><a href="?lang=en" data-lang="en">EN</a></li>
+          </ul>
         </div>
-        <div class="container d-flex justify-between align-center">
-            <ul class="nav-ul d-flex align-center burger">
-                <li class="nav-li">
-                    <button class="nav-open-button">
-                    </button>
-                </li>
-            </ul>
-            <ul class="nav-ul d-flex align-center mobile-hidden">
-                <li class="nav-li">
-                    <a href="/">
-                        <img id="header-logo" src="/static/assets/img/logo-min.svg">
-                        </img>
-                    </a>
-                </li>
-                <li class="nav-li">
-                    <a href="/" id="header-olymp-name">
-                        BSUIR Open XII
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav-ul d-flex align-center mid-hidden">
-                <li class="nav-li">
-                    <a href="{% url 'common-info' %}" class="btn-star little">
-                        О чемпионате
-                    </a>
-                </li>
-                <li class="nav-li">
-                    <a href="{% url 'rules' %}" class="btn-star little">
-                        Правила
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav-ul d-flex align-center">
-                <li class="nav-li">
-                    <a href="?lang=ru" class="little btn-star inline active">
-                        RU
-                    </a>
-                </li>
-                <li class="nav-li">
-                    <a href="?lang=en" class="little btn-star inline ">
-                        EN
-                    </a>
-                </li>
-                <li class="nav-li">
-                    <a href="?lang=be" class="little btn-star inline ">
-                        BE
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav-ul d-flex align-center profile-btns">
-                {% if not request.user.is_authenticated %}
-                <li class="nav-li">
-                    <a href="{% url 'login' %}" class="btn-star little">
-                        Войти
-                    </a>
-                </li>
-                <li class="nav-li">
-                    <a href="{% url 'signup' %}" class="btn-star little">
-                        Зарегистрироваться
-                    </a>
-                </li>
-                {% else %}
-                <li class="nav-li">
-                    <a href="{% url 'team-detail' %}" class="btn-star little">
-                        Профиль
-                    </a>
-                </li>
-                <li class="nav-li">
-                    <a href="{% url 'logout' %}" class="btn-star little">
-                        Выход
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-    <script src="{% static 'assets/js/navbar.js' %}">
-    </script>
+      </li>
+    </ul>
+  </nav>
+</header>
+<header id="mobile-header">
+  <a href="{% url 'index' %}">
+    <span class="mobile-header-title">{{ tr.title }}</span>
+  </a>
+  <button class="burger-button" id="burger-button">
+    <img src="{% static 'assets/img/burger.svg' %}" alt="" />
+  </button>
+  <nav class="mobile-menu">
+    <ul class="mobile-main-buttons">
+      <li><a href="{% url 'index' %}#main-section" class="mobile-menu-button">{{ tr.main_page }}</a></li>
+      <li><a href="{% url 'index' %}#about" class="mobile-menu-button">{{ tr.about }}</a></li>
+      <li><a href="{% url 'index' %}#stages" class="mobile-menu-button">{{ tr.stages }}</a></li>
+      <li><a href="{% url 'index' %}#timetable" class="mobile-menu-button">{{ tr.schedule }}</a></li>
+      <!-- <li><a href="{% url 'index' %}#partners" class="mobile-menu-button">Партнеры</a></li> -->
+      <li><a href="{% url 'common-info' %}" class="mobile-menu-button">{{ tr.common_info_page_titl }}</a></li>
+      <li><a href="{% url 'rules' %}">{{ tr.rules }}</a></li>
+    </ul>
+    <div class="menu-buttons">
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'team-detail' %}">{{ tr.profile }}</a>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <a>
+          <button type="submit" class="mobile-menu-button logout-button">
+            {{ tr.logout }}
+          </button>
+        </a>
+      </form>
+      {% else %}
+      <a href="{% url 'login' %}">{{ tr.participate }}</a>
+      {% endif %}
+    </div>
+  </nav>
 </header>

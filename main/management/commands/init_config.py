@@ -50,3 +50,13 @@ class Command(BaseCommand):
         if _:
             obj.value='http://localhost:4242/api/v0'
             obj.save()
+
+        obj, _ = Settings.objects.get_or_create(name="configuration.agreement")
+        if _:
+            obj.value='true'
+            obj.save()
+
+        obj, _ = Settings.objects.get_or_create(name="configuration.agreement.url")
+        if _:
+            obj.value=''
+            obj.save()

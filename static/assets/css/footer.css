@@ -1,0 +1,77 @@
+.footer {
+    width: 100%;
+    background-color: var(--white);
+    color: var(--avia-blue);
+
+    border-radius: var(--border-radius) var(--border-radius) 0px 0px;
+    font-family: 'Frutiger Neue LT Regular', sans-serif;
+}
+
+.footer_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 1.5rem;
+    overflow: hidden;
+}
+
+.footer_content a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer_btn {
+    display: flex;
+    font-family: var(--bold);
+    line-height: normal;
+    font-size: 2vmin;
+    gap: 2rem;
+}
+
+.footer_img {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.footer_img img {
+    width: 3rem;
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 875px) {
+    .footer_btn a {
+        display: none;
+    }
+
+    .footer_img {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .footer_content {
+        padding: 1.25rem;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .footer_img a{
+        display: inline-block !important;
+    }
+
+    .footer_img{
+        scale: 0.8;
+        justify-content: space-between;
+    }
+
+    .footer_content {
+        padding: 1vh;
+    }
+}

@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Frutiger Neue LT Bold';
+    src: url("../fonts/FrutigerNeueLTW1G-Bold.ttf") format('truetype');
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Frutiger Neue LT Regular';
+    src: url("../fonts/FrutigerNeueLTW1G-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Frutiger Neue LT CnBoldIt';
+    src: url("../fonts/FrutigerNeueLTW1G-CnBoldIt.ttf") format('truetype');
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Frutiger Neue LT CnBlk';
+    src: url("../fonts/FrutigerNeueLTW1G-CnBlk.ttf");
+    font-weight: bold;
+    font-display: swap;
+}

@@ -2,168 +2,265 @@
 {% load static %}
 
 {% block title %}
-Главная
+    Главная
 {% endblock %}
 
 {% block content %}
 <main>
-    <article class="logo full-screen noised d-flex justify-center align-center">
-        <div class="container">
-            <img src="{% static 'assets/img/logo-min.svg' %}" alt="Логотип" class="logo-img">
-            <h1>BSUIR Open XII</h1>
-        </div>
-        <img src="{% static 'assets/img/space-mountains.webp' %}" alt="Горы" class="mountains">
-        <div class="overlap-gradient"></div>
-    </article>
-    <article class="about noised">
-        <div class="container">
-            <h2 class="about-header">12-й открытый командный чемпионат БГУИР по спортивному программированию</h2>
-            <div class="d-flex justify-between align-center">
-                <ul class="about-ul">
-                    <li class="about-li">Проводится по стандартным правилам ICPC</li>
-                    <li class="about-li">Команды от 2 до 3 человек</li>
-                    <li class="about-li">Участники со всего земного шара</li>
-                    <li class="about-li">Интересные задания и незабываемые эмоции</li>
-                </ul>
-            </div>
-        </div>
-    </article>
-    <article class="ages noised">
-        <div class="container d-flex direction-column">
-            <h2 class="ages-header">Две возрастные категории</h2>
-            <div class="d-flex justify-between">
-                <p><b class="big-text color-blue">Junior</b> - школьные команды</p>
-            </div>
-            <p class="margined"><b class="big-text color-beige">Student</b> - студенческие команды</p>
-        </div>
-    </article>
-    <article class="championship">
-        <div class="container">
-            <h2 class="championship-header color-white">Чемпионат состоит из 3 этапов</h2>
-            <ul class="championship-phases d-flex justify-between align-center">
-                <li class="championship-phase">
-                    <a href="#0" class="btn-star championship-button active" data-key="0">Четвертьфинал</a>
-                </li>
-                <li class="championship-phase">
-                    <a href="#1" class="btn-star championship-button" data-key="1">Полуфинал</a>
-                </li>
-                <li class="championship-phase">
-                    <a href="#2" class="btn-star championship-button" data-key="2">Финал</a>
-                </li>
-            </ul>
-            <div class="quarterfinal final-text active">
-                <p class="championship-text">Цели отборочного тура:
-                <ul class="championship-list">
-                    <li>дать возможность командам самостоятельно оценить уровень подготовки к участию в Чемпионате;</li>
-                    <li>отобрать команды, которые смогут бороться во втором отборочном туре (полуфинале) за выход в
-                        финал Чемпионата.</li>
-                </ul>
-                </p>
-                <p class="championship-text">Четвертьфинал является обязательным отборочным этапом для команд БГУИР и
-                    школьников. Остальные команды по желанию также могут принять участие в данном туре. Смешанные
-                    команды, в состав которых входит хотя бы один студент, магистрант или аспирант БГУИР, также должны
-                    принимать участие в четвертьфинале соревнований.</p>
-                <p class="championship-text">Команды, решившие не менее половины из предложенных задач, проходят во
-                    второй отборочный тур (полуфинал соревнований).</p>
-                <a href="{% url 'team-list' %}" class="btn-star">Список участников</a>
-            </div>
-            <div class="semifinal final-text">
-                </p>
-                <p class="championship-text">Второй отборочный тур (полуфинал) проводится в очно-заочной форме.
-                    Командам-участницам предлагается решить от 4 до 12
-                    задач (текст задач на русском и английском языках) за 4-5 астрономических часов. Жюри имеет право
-                    продлить соревнования
-                    в случае каких-либо непредвиденных обстоятельств.</p>
-                <p class="championship-text">Команды БГУИР участвуют в туре очно на базе университета. Команды не из
-                    БГУИР решают тур заочно в своих учреждениях
-                    образования. За соблюдение правил соревнований в данном случае отвечает тренер команды. Участники
-                    других учреждений
-                    образования, изъявившие желание участвовать в полуфинале на базе БГУИР, должны заранее сообщить
-                    организаторам об этом.</p>
-                </p>
-                <a href="{% url 'semifinal' %}" class="btn-star">Список участников</a>
-            </div>
-            <div class="final final-text">
-                <p class="championship-text">В следующий этап (финал) проходят 30 команд, показавшие лучшие результаты
-                    на данном этапе, но не более:
-                <ul class="championship-list">
-                    <li>7 команд студентов, магистрантов и аспирантов БГУИР;</li>
-                    <li>2 команд от каждого вуза или ссуза Республики Беларусь и стран зарубежья;</li>
-                </ul>
-                </p>
-                <p class="championship-text">Для команд из средних общеобразовательных учреждений проводится отдельный
-                    финал, в который приглашается
-                    не более 25 команд и не более одной команды от каждого учреждения образования. Решение об участии в
-                    школьном финале команд, участники которых являются представителями разных учреждений образования,
-                    принимается организационным комитетом в индивидуальном порядке.</p>
+  <section id="main-section">
+    <img
+      src="{% static 'assets/img/logo.svg' %}"
+      alt="BSUIR Open logo"
+      class="bsuir-open-logo"
+    />
+    <h1 class="main-title">{{ tr.title }}</h1>
+    <img src="{% static 'assets/img/tower.png' %}" alt="tower" class="tower" />
+    <img src="{% static 'assets/img/plane.png' %}" alt="plane" class="plane" />
+    <img src="{% static 'assets/img/roadr.png' %}" alt="road" class="road" />
+  </section>
+  <section id="about">
+    <h2 class="title">{{ tr.about }}</h2>
+    <p class="text">
+      {{ tr.index_about_header }}
+    </p>
+    <ul class="about-list">
+      <li>
+        <img
+          class="plane-point-image"
+          src="{% static 'assets/img/plane point.svg' %}"
+          alt="plane point"
+        />
+        <p class="text">{{ tr.index_about_list_1 }}</p>
+      </li>
+      <li>
+        <img
+          class="plane-point-image"
+          src="{% static 'assets/img/plane point.svg' %}"
+          alt="plane point"
+        />
+        <p class="text">{{ tr.index_about_list_2 }}</p>
+      </li>
+      <li>
+        <img
+          class="plane-point-image"
+          src="{% static 'assets/img/plane point.svg' %}"
+          alt="plane point"
+        />
+        <p class="text">{{ tr.index_about_list_3 }}</p>
+      </li>
+      <li>
+        <img
+          class="plane-point-image"
+          src="{% static 'assets/img/plane point.svg' %}"
+          alt="plane point"
+        />
+        <p class="text">{{ tr.index_about_list_4 }}</p>
+      </li>
+      <li>
+        <img
+          class="plane-point-image"
+          src="{% static 'assets/img/plane point.svg' %}"
+          alt="plane point"
+        />
+        <p class="text">{{ tr.index_ages_header }}:</p>
+      </li>
+    </ul>
 
-                <p class="championship-text">По решению оргкомитета и жюри количество команд, которое проходит в
-                    следующий этап, их состав, а также
-                    квота могут быть
-                    изменены.</p>
-
-                <p class="championship-text">Финал соревнований проводится в очной форме. Участникам предлагается решить
-                    от 6 до 12 алгоритмических
-                    задач (тексты
-                    задач на английском языке) за 5 астрономических часов.</p>
-                <a href="{% url 'stud-final' %}" class="btn-star participants">Список студенческих команд</a>
-                <a href="{% url 'jun-final' %}" class="btn-star participants">Список школьных команд</a>
-            </div>
+    <div class="ages">
+      <div class="age">
+        <span class="title age-title">Junior</span>
+        <p class="text age-text">- {{ tr.index_age_junior }}</p>
+      </div>
+      <div class="age">
+        <span class="title age-title">Student</span>
+        <p class="text age-text">- {{ tr.index_age_student }}</p>
+      </div>
+    </div>
+  </section>
+  <section id="stages">
+    <h2 class="title title-right">{{ tr.stages }}</h2>
+    <nav>
+      <ul class="steps-list">
+        <li>
+          <button
+            class="step-button step-button-active"
+            data-target="#quaterfinal"
+          >
+            {{ tr.index_round_quarter }}
+          </button>
+        </li>
+        <li>
+          <button class="step-button" data-target="#halffinal">
+            {{ tr.index_round_semi }}
+          </button>
+        </li>
+        <li>
+          <button class="step-button" data-target="#final">{{ tr.index_round_final }}</button>
+        </li>
+      </ul>
+    </nav>
+    <div class="card">
+      <div class="card-header">
+        <p class="main-title card-title">{{ tr.title }}</p>
+        <img
+          src="{% static 'assets/img/logo.svg' %}"
+          alt="BSUIR Open logo"
+          class="card-logo"
+        />
+      </div>
+      <div class="card-body">
+        <div class="card-description active" id="quaterfinal">
+          <p class="stage-title">{{ tr.index_round_quarter }}</p>
+          <p class="text card-text">{{ tr.index_quarter_purpose }}:</p>
+          <ul class="card-description-list">
+            <li class="point">
+              <p class="text card-text">
+                {{ tr.index_quarter_list_1 }}
+              </p>
+            </li>
+            <li class="point">
+              <p class="text card-text">
+                {{ tr.index_quarter_list_2 }}
+              </p>
+            </li>
+          </ul>
+          <p class="text card-text">
+            {{ tr.index_quarter_info }}
+          </p>
+          <p class="text card-text">
+            {{ tr.index_quarter_pass }}
+          </p>
         </div>
-    </article>
-    <article class="schedule noised">
-        <div class="container d-flex direction-column">
-            <h2 class="schedule-header">Расписание</h2>
-            <div class="schedule-list d-flex direction-column">
-                <div class="schedule-registration schedule-text">
-                    <h3 class="schedule-subheader">Регистрация</h3>
-                    <p class="schedule-paragraph color-red">до 1 апреля включительно</p>
-                </div>
-                <div class="schedule-selection d-flex justify-around align-center">
-                    <div class="schedule-text">
-                        <h3 class="schedule-subheader">Отборочный тур</h3>
-                        <p class="schedule-paragraph color-red">19-24 марта</p>
-                    </div>
-                </div>
-                <div class="schedule-semifinal">
-                    <div class="schedule-text">
-                        <h3 class="schedule-subheader">Полуфинал</h3>
-                        <p class="schedule-paragraph color-red">4 апреля</p>
-                    </div>
-                </div>
-            </div>
+        <div class="card-description" id="halffinal">
+          <p class="stage-title">{{ tr.index_round_semi }}</p>
+          <p class="text card-text">
+            {{ tr.index_semifinal_info }}
+          </p>
+          <p class="text card-text">
+            {{ tr.index_semifinal_details }}
+          </p>
         </div>
-        <div class="final-schedule">
-            <div class="container d-flex direction-column align-center justify-center">
-                <h3 class="final-schedule-header color-blue">Финал</h3>
-                <p class="final-schedule-text"><b>Student</b> - 27 апреля</p>
-                <p class="final-schedule-text"><b>Junior</b> - 4 мая</p>
-                <p class="final-schedule-text color-beige">Минск, Гикало, 9</p>
-            </div>
+        <div class="card-description" id="final">
+          <p class="stage-title">{{ tr.index_round_final }}</p>
+          <p class="text card-text">
+            {{ tr.index_final_info }}
+          </p>
+          <ul class="card-description-list">
+            <li class="point">
+              <p class="text card-text">
+                {{ tr.index_final_list_1 }}
+              </p>
+            </li>
+            <li class="point">
+              <p class="text card-text">
+                {{ tr.index_final_list_2 }}
+              </p>
+            </li>
+          </ul>
+          <p class="text card-text">
+            {{ tr.index_final_additional }}
+          </p>
+          </p>
         </div>
-    </article>
-    <article class="previous-open noised">
-        <div class="container d-flex direction-column align-center justify-center">
-            <h2 class="previous-opheader">Как это было <small class="color-red">в прошлый раз</small></h2>
-            <iframe class="previous-opvideo" width="1000" height="500" src="https://www.youtube.com/embed/yf2lhiJuQ3o?si=CNFTLyycpj_8TXr9"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            <p class="previous-optext">Понравилось?</p>
-            <p class="previous-optext">Ознакомься с
-                <a href="{% url 'rules' %}" class="underscored color-blue">правилами</a>
-                и
-                <a href="{% url 'signup' %}" class="underscored color-blue">регистрируй команду</a>
-            </p>
-            <p class="previous-optext color-red"><small>а ещё</small></p>
-            <p class="previous-optext previous-opvk">
-                Следи за чемпионатом в
-                <a href="https://vk.com/bsuiropen" class="underscored color-blue">группе ВК</a>
-            </p>
-        </div>
-    </article>
-    {% include "includes/sponsors.html" %}
+      </div>
+    </div>
+  </section>
+  <section id="timetable">
+    <span class="timetable-title">
+      <img class="plane-title" src="{% static 'assets/img/plane point.svg' %}" />
+      <h2 class="title">{{ tr.schedule }}</h2>
+    </span>
+    <div class="desktop-timetable">
+      <table class="table">
+        <thead>
+          <tr>
+            <td class="header-text">{{ tr.date }}</td>
+            <td class="header-text">{{ tr.one_stage }}</td>
+            <td class="header-text">{{ tr.status }}</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="underlined">
+            <td class="merge-date">
+              <img
+                src="{% static 'assets/img/merge-line.svg' %}"
+                alt=""
+                class="merge-line"
+              />
+              <div class="date">
+                <p class="date-text">{{ tr.reg_start_day }}</p>
+                <p class="date-text">{{ tr.reg_end_day }}</p>
+              </div>
+            </td>
+            <td class="stage-text">{{ tr.registration }}</td>
+            <td class="status-text">{{tr.reg_state}}</td>
+          </tr>
+          <tr class="underlined">
+            <td class="merge-date">
+              <img
+                src="{% static 'assets/img/merge-line.svg' %}"
+                alt=""
+                class="merge-line"
+              />
+              <div class="date">
+                <p class="date-text">{{ tr.qual_start_day }}</p>
+                <p class="date-text">{{ tr.qual_end_day }}</p>
+              </div>
+            </td>
+            <td class="stage-text">{{ tr.index_selection_header }}</td>
+            <td class="status-text">
+              {{tr.qual_state}}
+            </td>
+          </tr>
+          <tr class="underlined">
+            <td class="date-text">{{ tr.semi_day }}</td>
+            <td class="stage-text">{{ tr.semifinal }}</td>
+            <td class="status-text">{{tr.semi_state}}</td>
+          </tr>
+          <tr class="underlined">
+            <td class="date-text">{{ tr.stud_final_day }}</td>
+            <td>
+              <p class="stage-text">{{ tr.stud_final }}</p>
+              <p class="status-text">({{ tr.bsuir_address }})</p>
+            </td>
+            <td class="status-text">{{tr.stud_fin_state}}</td>
+          </tr>
+          <tr>
+            <td class="date-text">{{ tr.jun_final_day }}</td>
+            <td>
+              <p class="stage-text">{{ tr.jun_final }}</p>
+              <p class="status-text">( {{tr.bsuir_address}} )</p>
+            </td>
+            <td class="status-text">{{tr.jun_fin_state}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mobile-timetable">
+      <p class="title timetable-title">{{ tr.registration }}</p>
+      <p class="text">{{tr.reg_start_day}} - {{tr.reg_end_day}}</p>
+      <p class="title timetable-title">{{ tr.index_selection_header }}</p>
+      <p class="text">{{tr.qual_start_day}} - {{tr.qual_end_day}}</p>
+      <p class="title timetable-title">{{tr.semifinal}}</p>
+      <p class="text">{{tr.semi_day}}</p>
+      <p class="title timetable-title">{{tr.stud_final}}</p>
+      <p class="text">{{tr.stud_final_day}}</p>
+      <p class="title timetable-title">{{tr.jun_final}}</p>
+      <p class="text">{{tr.jun_final_day}}</p>
+    </div>
+  </section>
+  <section id="partners">
+    <!-- <h2 class="title">Наши партнеры</h2>
+    <div class="partners-icons">
+      <img src="{% static 'assets/img/Huawei.png' %}" alt="Huawei" class="sponsor-logo" />
+      <img src="{% static 'assets/img/Huawei.png' %}" alt="Huawei" class="sponsor-logo" />
+      <img src="{% static 'assets/img/Huawei.png' %}" alt="Huawei" class="sponsor-logo" />
+      <img src="{% static 'assets/img/Huawei.png' %}" alt="Huawei" class="sponsor-logo" />
+    </div> -->
+    <img src="{% static 'assets/img/plane-front.svg' %}" alt="plane" class="plane-front" />
+    <img src="{% static 'assets/img/cloud1.svg' %}" alt="" class="cloud-1" />
+    <img src="{% static 'assets/img/cloud2.svg' %}" alt="" class="cloud-2" />
+  </section>
 </main>
-<script src="{% static 'assets/js/championship.js' %}"></script>
-
+<script src="{% static 'assets/js/scroll.js' %} "></script>
 {% endblock %}

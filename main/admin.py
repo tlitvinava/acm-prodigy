@@ -1,6 +1,7 @@
 import requests
 from uuid import uuid4
 from django.contrib import admin
+from django.conf import settings
 from django.http import HttpResponse
 
 from main.utils import Configuration
@@ -10,7 +11,18 @@ from main.models import (
     Coach,
     TranslationKey,
     Translation,
+    Settings,
 )
+
+admin.site.site_header = f'ACM (ver. {settings.VERSION})'
+
+
+@admin.register(Settings)
+class SettingsAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'value',
+    )
 
 
 class TranslationInline(admin.TabularInline):
@@ -36,8 +48,9 @@ class ParticipantAdmin(admin.ModelAdmin):
         'phone',
         'team',
         'education',
+        'user__username',
     )
-    search_fields = ['firstname', 'secondname', 'lastname', 'email',]
+    search_fields = ['firstname', 'secondname', 'lastname', 'email', 'user__username']
     empty_value_display = 'unknown'
 
 
@@ -54,6 +67,7 @@ class TeamAdmin(admin.ModelAdmin):
         '__str__',
         'status',
         'type',
+        'system_login'
     )
     search_fields = ['name', 'participants__lastname',
                      'coach__lastname', 'system_login']
@@ -80,7 +94,17 @@ class TeamAdmin(admin.ModelAdmin):
         'count_statistics',
         'reset',
         'generate_users',
+        'export_emails',
     ]
+
+    @admin.action(description='Export users emails')
+    def export_emails(self, request, queryset):
+        mails = set()
+        for team in queryset.all():
+            for part in team.participants.all():
+                mails.add(part.email.strip())
+        mails = mails - set(('', None))
+        return HttpResponse(', '.join(mails), content_type='text/plain; charset=utf-8')
 
     @admin.action(description='Mark selected teams as mail sent')
     def mark_as_sent(self, request, queryset):
@@ -238,7 +262,7 @@ class TeamAdmin(admin.ModelAdmin):
                             'X-Solve-Sync': 'true'
                         }
                     )
-
+                    team.system_login = f'{scope}/{team.system_login}'
                     team.system_password = generate_resp.json()["password"]
                     team.save()
                     i += 1

@@ -1,0 +1,298 @@
+body {
+    font-family: 'Frutiger Neue LT Regular', sans-serif;
+    background-color: var(--background-color);
+    position: inherit;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+
+    padding: 200px 100px;
+}
+
+.headline {
+    color: var(--white);
+    margin-left: 32px;
+    font-size: 54px;
+    font-family: var(--bold), sans-serif;
+}
+
+.options {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    margin-top: 57px;
+    gap: 10px;
+}
+
+.option {
+    display: flex;
+    gap: 4px;
+}
+
+.brleft {
+    border-radius: 15px 0 0 15px;
+    /* width: 30vw; */
+}
+
+.brright {
+    border-radius: 0 15px 15px 0;
+    /* width: 100%; */
+}
+
+.item {
+    background-color: var(--white);
+    color: var(--avia-blue);
+    border: none;
+    width: 20vw;
+    transition: .2s;
+}
+
+.item:hover {
+    cursor: pointer;
+}
+
+.item-text {
+    font-family: var(--bold), sans-serif;
+    margin: 0;
+    padding: 16px 30px 16px 30px;
+}
+
+.restriction {
+    color: var(--error);
+    font-size: 3vmin;
+    margin: 27px 0 0 43px;
+}
+
+.restriction_center {
+    margin: 0;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.button_add button {
+    font-size: 1.8vmin;
+    padding: 10px 15px 10px 15px;
+    background-color: var(--white);
+}
+
+.dirow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    margin: 22px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    row-gap: 22px;
+    column-gap: 22px;
+}
+
+.grid_item {
+    display: flex;
+    justify-content: center;
+    vertical-align: center;
+    position: relative;
+}
+
+select {
+    font-family: var(--bold), sans-serif;
+    color: var(--grey);
+    background-color: var(--white);
+    border: none;
+    width: 100%;
+    height: 5vh;
+    padding: 12px 10px 12px 15px;
+    color: var(--grey);
+    border-radius: var(--border-radius);
+
+    font-size: 1.8vmin;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    position: relative;
+    transition: .2s;
+}
+
+.arrow {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-right: 20px;
+}
+
+.alarm {
+    position: absolute;
+    right: 0;
+}
+
+.alarm img {
+    width: 50%;
+}
+
+.arrow img {
+    height: 30%;
+}
+
+
+#command_name {
+    margin-top: 22px;
+}
+
+.name_input_container {
+    display: flex;
+    width: 100%;
+}
+
+.name_input_container input {
+    width: 100%;
+    /* font-size: 16px; */
+    padding-left: 16px;
+}
+
+button.active-form-button{
+    opacity: 1 !important;
+}
+
+.command-type button, .univer-type button{
+    opacity: 0.66;
+}
+
+@media screen and (max-width: 875px) {
+    .container {    
+        padding: 140px 50px;
+    }
+
+    .options {
+        margin-top: 0;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .item-text {
+        font-size: 16px;
+        padding: 8px 16px 8px 16px;
+    }
+
+    .headline {
+        margin-left: 32px;
+        font-size: 42px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brright {
+        width: 100%;
+    }
+
+    .brleft {
+        width: 100%;
+    }
+
+    .button_add button {
+        font-size: 2.3vmin;
+    }
+
+    .restriction {
+        font-size: 2vmax;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {    
+        padding: 100px 30px 0 30px;
+    }
+
+    .select {
+        font-size: 11px;
+    }
+
+    .option {
+        gap: 2px;
+    }
+
+    .options {
+        margin-top: 11px;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .brleft {
+        border-radius: 8px 0 0 8px;
+        width: 100%;
+    }
+    
+    .brright {
+        border-radius: 0 8px 8px 0;
+        width: 100%;
+    }
+    
+    .item-text {
+        font-size: 12px;
+        padding: 4px 8px 4px 8px;
+    }
+
+    .headline {
+        font-size: 32px;
+        margin-left: 0;
+    }
+
+    .grid {
+        margin: 0;
+        padding: 11px 0 0 0;
+        row-gap: 11px;
+    }
+
+    .button_add button {
+        font-size: 3vmin;
+        border-radius: 12px;
+        background-color: var(--white);
+    }
+
+    body {
+        position: inherit;
+    }
+
+    .restriction {
+        margin-top: 11px;
+    }
+
+    .arrow img {
+        height: 20%;
+    }
+
+    #command_name {
+        margin-top: 11px;
+    }
+
+    #command_apply {
+        margin-top: 11px;
+    }
+
+    .name_input_container input {
+        width: 100%;
+        font-size: 11px;
+        padding-left: 10px;
+    }
+}
