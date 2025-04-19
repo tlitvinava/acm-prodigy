@@ -1,8 +1,10 @@
 import asyncio
 import aiohttp
 import json
-import time
 from aiohttp import BasicAuth
+from database import create_database, save_solution_to_db, check_solution_exists
+
+create_database()
 
 async def parse_accepted_solutions():
     # Конфигурационные параметры
@@ -10,7 +12,6 @@ async def parse_accepted_solutions():
     login = "denvilk"
     password = "Prodigy@Netw0rk"
     CONTEST_ID = 23  # ID соревнования
-    begin_time = int(time.time())
     # Создаем сессию с общими настройками
     async with aiohttp.ClientSession() as session:
         try:
@@ -49,11 +50,10 @@ async def parse_accepted_solutions():
                         
                         if not line:
                             continue
-                            
 
                         event = json.loads(line)
                         if is_accepted_solution(event):
-                            await fetch_solution_details(session, cookies, SOLVE_URL, event, begin_time)
+                            await fetch_solution_details(session, cookies, SOLVE_URL, event)
         
         except aiohttp.ClientError as e:
             print(f"Сетевая ошибка: {e}")
@@ -67,7 +67,7 @@ def is_accepted_solution(event):
         event.get("data", {}).get("judgement_type_id") == "AC"
     )
 
-async def fetch_solution_details(session, cookies, base_url, event, begin_time):
+async def fetch_solution_details(session, cookies, base_url, event):
     """Получаем детали решения"""
     solution_id = event.get("data", {}).get("submission_id")
     if not solution_id:
@@ -78,17 +78,14 @@ async def fetch_solution_details(session, cookies, base_url, event, begin_time):
     async with session.get(solution_url, cookies=cookies, headers={'X-Solve-Sync': 'true'}) as resp:
         if resp.status == 200:
             solution_data = await resp.json()
-            print("\n" + "="*50)
-            print(f"Найдено Accepted решение (ID: {solution_id}):")
-            print(begin_time)
-            #if solution_data['create_time'] > begin_time:
-            print(solution_data["problem"]["id"], solution_data["problem"]["statement"]["title"], solution_data["scope_user"]["title"])
-            
-            # Здесь можно добавить обработку данных решения
-            # Например, сохранение в файл или базу данных
-            
+            if not check_solution_exists(solution_data["scope_user"]["id"], solution_data["problem"]["id"]):
+                print("="*50)
+                print(f"Новое Accepted решение:")
+                print(solution_data["problem"]["id"], solution_data["problem"]["statement"]["title"], '-', solution_data["scope_user"]["title"])
+                save_solution_to_db(solution_data["scope_user"]["id"], solution_data["problem"]["id"])
         else:
             print(f"Не удалось получить решение {solution_id}: {resp.status}")
 
 asyncio.run(parse_accepted_solutions())
+
 
