@@ -48,9 +48,14 @@ class Command(BaseCommand):
 
         obj, _ = Settings.objects.get_or_create(name="configuration.solve.url")
         if _:
-            obj.value='http://localhost:4242/api/v0'
+            obj.value='https://solve.bsuir.by/api/v0'
             obj.save()
 
+        obj, _ = Settings.objects.get_or_create(name="configuration.solve.event-feed.url")
+        if _:
+            obj.value='https://solve.bsuir.by/api/ccs/contests/{contest_id}/event_feed'
+            obj.save()
+            
         obj, _ = Settings.objects.get_or_create(name="configuration.agreement")
         if _:
             obj.value='true'
