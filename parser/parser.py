@@ -93,6 +93,10 @@ import json
 from django.utils import timezone
 from main.models import AcceptedSolution  # Замените 'main' на ваше приложение
 
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
 def parse_accepted_solutions():
     # Конфигурационные параметры
     SOLVE_URL = "https://solve.bsuir.by/"
@@ -147,7 +151,7 @@ def fetch_solution_details(cookies, base_url, event):
     """Получаем детали решения"""
     solution_id = event.get("data", {}).get("submission_id")
     if not solution_id:
-        print("Отсутствует ID решения в событии")
+        logging.warning("Отсутствует ID решения в событии")
         return
 
     solution_url = f"{base_url}api/v0/solutions/{solution_id}"
@@ -160,10 +164,11 @@ def fetch_solution_details(cookies, base_url, event):
         title = solution_data["problem"]["statement"]["title"]
         user_title = solution_data["scope_user"]["title"]
 
-        # Используем метод save_solution для сохранения в базу данных
-        AcceptedSolution.save_solution(user_id, problem_id, title, user_title)
+        # Сохраняем в базу данных и получаем сохраненное решение
+        saved_solution = AcceptedSolution.save_solution(user_id, problem_id, title, user_title)
+
+        # Если решение было сохранено, выводим его
+        if saved_solution:
+            logging.info(f"Сохраненное решение: {saved_solution}")
     else:
-        print(f"Не удалось получить решение {solution_id}: {resp.status_code}")
-        
-if __name__ == "__main__":
-    parse_accepted_solutions()
+        logging.error(f"Не удалось получить решение {solution_id}: {resp.status_code}")
