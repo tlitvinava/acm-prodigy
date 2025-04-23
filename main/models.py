@@ -24,6 +24,30 @@ class TranslationKey(models.Model):
     def __str__(self):
         return self.key
 
+class AcceptedSolution(models.Model):
+    user_id = models.IntegerField()
+    problem_id = models.IntegerField()
+    problem_title = models.CharField(max_length=255)
+    user_title = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user_title} - {self.problem_title}"
+    
+    @classmethod
+    def save_solution(cls, user_id, problem_id, problem_title, user_title):
+        """Сохраняем решение в базу данных."""
+        solution, created = cls.objects.get_or_create(
+            user_id=user_id,
+            problem_id=problem_id,
+            problem_title=problem_title,
+            user_title=user_title,
+            #defaults={'created_at': timezone.now()}
+        )
+        if created:
+            print("Новое Accepted решение сохранено.")
+        else:
+            print("Решение уже существует.")
 
 class Translation(models.Model):
     LANGUAGES = (
