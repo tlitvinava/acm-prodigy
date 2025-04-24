@@ -2,6 +2,7 @@ import requests
 import json
 import logging
 from main.utils import Configuration
+from main.models import AcceptedSolution
 
 def parse_accepted_solutions():
     # Конфигурационные параметры
@@ -36,7 +37,8 @@ def parse_accepted_solutions():
             if line:  # игнорируем пустые keep-alive строки
                 try:
                     event = json.loads(line.decode('utf-8'))
-                    if is_accepted_solution(event):
+                    is_unsaved = AcceptedSolution.check_solution()
+                    if is_accepted_solution(event) and is_unsaved:
                         fetch_solution_details(solve_url, cookies, event)
                 except json.JSONDecodeError as e:
                     logging.error(f"Ошибка парсинга JSON: {e}")
@@ -58,6 +60,7 @@ def fetch_solution_details(base_url, cookies, event):
     if resp.status == 200:
         solution_data = resp.json()
         logging.info(f"Новое принятое решение (ID: {solution_id}):", solution_data["problem"]["id"], solution_data["problem"]["statement"]["title"], solution_data["scope_user"]["title"])
+
     else:
         logging.error(f"Не удалось получить решение {solution_id}: {resp.status}")
 

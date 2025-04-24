@@ -4,17 +4,27 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django_countries.fields import CountryField
 from django.conf import settings
-
+import logging
 
 User = get_user_model()
 
+class AcceptedSolution(models.Model):
+    solution_id = models.IntegerField()
+
+    @classmethod
+    def check_solution(cls, solution_id):
+        """Сохраняем решение в базу данных и логируем результат."""
+        solution, created = cls.objects.get_or_create(
+            solution_id = solution_id
+        )
+        return created
+        
 class Settings(models.Model):
     name = models.CharField(max_length=256)
     value = models.CharField(max_length=1024)
     description = models.CharField(max_length=120, null=True, blank=True)
 
     def __str__(self):
-
         return self.name
 
 
